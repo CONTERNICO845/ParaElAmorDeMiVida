@@ -3,96 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso Restringido - Navidad</title>
+    <title>SYSTEM HACKED BY 707</title>
     <style>
         body {
-            background-color: #0d1117;
-            color: #39ff14;
+            background-color: #000000;
+            /* Color Naranja estilo 707 */
+            color: #ff8c00; 
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             padding: 20px;
-            text-align: center;
         }
         #terminal {
+            width: 100%;
             max-width: 600px;
-            text-align: left;
-            background: #161b22;
+            background: #1a0f00; /* Fondo muy oscuro rojizo/negro */
             padding: 20px;
             border-radius: 8px;
-            border: 1px solid #30363d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #ff4500;
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
+            text-align: left;
+            overflow: hidden;
+        }
+        .header-ascii {
+            white-space: pre;
+            font-size: 10px;
+            line-height: 10px;
+            color: #ff4500;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .linea {
+            margin: 5px 0;
+            display: block;
         }
         .cursor {
-            border-right: 10px solid #39ff14;
+            border-right: 10px solid #ff8c00;
             animation: blink 0.7s infinite;
         }
         @keyframes blink { 50% { border-color: transparent; } }
         
         button {
-            margin-top: 20px;
-            background: #238636;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+            margin-top: 30px;
+            background: #ff4500; /* Rojo/Naranja Seven */
+            color: #1a0f00;
+            border: 2px solid #ff8c00;
+            padding: 15px 30px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
             font-size: 1.1em;
-            display: none; /* Se activa al final */
+            cursor: pointer;
+            display: none; /* Se oculta al inicio */
+            text-transform: uppercase;
+            box-shadow: 0 0 15px #ff4500;
         }
-        button:hover { background: #2ea043; }
+        button:hover { 
+            background: #ff8c00; 
+            color: #000;
+        }
     </style>
 </head>
 <body>
-<h1>Hola Pagina Actualizada</h1>
+
     <div id="terminal">
+        <div class="header-ascii">
+  _____  ___  _____ 
+ |___  |/ _ \|___  |
+    / /| | | |  / / 
+   / / | |_| | / /  
+  /_/   \___/ /_/   
+   GOD SEVEN v.2.0
+        </div>
         <div id="texto"></div>
         <span class="cursor"></span>
     </div>
 
-    <button id="botonRegalo" onclick="mostrarSorpresa()">EJECUTAR REGALO.EXE</button>
+    <button id="botonRegalo" onclick="mostrarSorpresa()">ABRIR SECRETO</button>
 
     <script>
+        // Aquí están las referencias a Mystic Messenger
         const lineas = [
-            "> Iniciando sistema de amor v2.0...",
-            "> Buscando base de datos de recuerdos...",
-            "> Encontrados: 1,000,000 de momentos felices.",
-            "> Cargando sentimientos...",
-            "> [ERROR] No se puede medir el nivel de amor: Excede los límites.",
-            "> Optimizando felicidad para esta Navidad...",
-            "> Sistema listo.",
-            "> Hola amor, tengo algo para ti..."
+            "> Conectando al servidor de la RFA...",
+            "> [GOD SEVEN] ha ingresado al chat.",
+            "> Hackeando seguridad... Acceso concedido.",
+            "> Comiendo Honey Buddha Chips... Espere.",
+            "> Escaneando a la usuaria: Es MC (La mujer más linda).",
+            "> Defensor de la Justicia activado.",
+            "> Descifrando mensaje oculto de mi corazón...",
+            "> ¡Hola amor! Seven tiene algo para ti..."
         ];
 
         let i = 0;
         let j = 0;
-        const speed = 50;
+        const speed = 40; // Velocidad de escritura
         const contenedor = document.getElementById("texto");
 
         function escribir() {
             if (i < lineas.length) {
+                // Si es el inicio de una línea, agregamos el prompt
+                if (j === 0) {
+                   // No hacemos nada especial, el texto ya trae el ">"
+                }
+
                 if (j < lineas[i].length) {
-                    contenedor.innerHTML += lineas[i].charAt(j);
+                    // Escribimos caracter por caracter
+                    // Truco: Si ya hay texto, lo recuperamos y añadimos el caracter
+                    // Pero para hacerlo simple, añadimos al HTML
+                    
+                    // Nota: para evitar problemas con el DOM, añadimos un span o directamente texto
+                    // Esta versión simplificada añade al innerHTML del div
+                    const char = lineas[i].charAt(j);
+                    contenedor.innerHTML += char;
                     j++;
                     setTimeout(escribir, speed);
                 } else {
-                    contenedor.innerHTML += "<br>";
+                    contenedor.innerHTML += "<br>"; // Salto de linea
                     i++;
                     j = 0;
-                    setTimeout(escribir, 1000);
+                    setTimeout(escribir, 800); // Pausa entre lineas
                 }
             } else {
+                // Al terminar todo
                 document.getElementById("botonRegalo").style.display = "block";
             }
         }
 
         function mostrarSorpresa() {
-            // Cambia el alert por lo que quieras, o redirígela a otra página/foto
-            alert("🎄 ¡Feliz Navidad! 🎄\n\nTu regalo está debajo del árbol (o en mi corazón). ¡Te amo!");
+            // Aquí puedes cambiar el mensaje final
+            alert("🐱 Mensaje de 707 (y de mí):\n\n¡Feliz Navidad, mi MC!\nGracias por reiniciar mi mundo todos los días.\n\nPD: No le digas a Vanderwood que estoy aquí.");
         }
 
         window.onload = escribir;

@@ -7,40 +7,39 @@
     <style>
         body {
             background-color: #000000;
-            /* Color Naranja estilo 707 */
             color: #ff8c00; 
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            min-height: 100vh; /* Ocupa toda la altura */
             margin: 0;
-            padding: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Evita scroll horizontal */
         }
+
+        /* --- ESTILO DE LA TERMINAL --- */
         #terminal {
-            width: 100%;
+            width: 95%;
             max-width: 600px;
-            background: #1a0f00; /* Fondo muy oscuro rojizo/negro */
-            padding: 20px;
+            background: #1a0f00; 
+            padding: 15px;
             border-radius: 8px;
             border: 2px solid #ff4500;
             box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
             text-align: left;
-            overflow: hidden;
+            margin-bottom: 20px;
         }
         .header-ascii {
             white-space: pre;
             font-size: 10px;
             line-height: 10px;
             color: #ff4500;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
             font-weight: bold;
-        }
-        .linea {
-            margin: 5px 0;
-            display: block;
         }
         .cursor {
             border-right: 10px solid #ff8c00;
@@ -48,24 +47,69 @@
         }
         @keyframes blink { 50% { border-color: transparent; } }
         
+        /* --- ESTILO DEL BOTÓN --- */
         button {
-            margin-top: 30px;
-            background: #ff4500; /* Rojo/Naranja Seven */
+            background: #ff4500; 
             color: #1a0f00;
             border: 2px solid #ff8c00;
-            padding: 15px 30px;
+            padding: 15px;
             font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1rem;
             cursor: pointer;
-            display: none; /* Se oculta al inicio */
+            display: none; 
             text-transform: uppercase;
             box-shadow: 0 0 15px #ff4500;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+            animation: palpitar 2s infinite;
         }
-        button:hover { 
-            background: #ff8c00; 
-            color: #000;
+        @keyframes palpitar {
+            0% { box-shadow: 0 0 10px #ff4500; }
+            50% { box-shadow: 0 0 25px #ff8c00; }
+            100% { box-shadow: 0 0 10px #ff4500; }
         }
+
+        /* --- ESTILO DEL CONTENEDOR DE LA IMAGEN --- */
+        #contenedorImagen {
+            display: none; 
+            text-align: center;
+            width: 100%;
+            height: 100vh; /* Usa toda la pantalla disponible */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* AQUÍ ESTÁ EL TRUCO PARA LA IMAGEN VERTICAL */
+        #imagenSorpresa {
+            width: auto;           /* El ancho se ajusta solo */
+            max-width: 100%;       /* No se sale del ancho de pantalla */
+            max-height: 75vh;      /* IMPORTANTE: Ocupa máx el 75% de la altura de la pantalla */
+            object-fit: contain;   /* Asegura que se vea completa */
+            border: 3px solid #ff4500;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255, 69, 0, 0.6);
+        }
+
+        .mensaje-final {
+            margin-top: 15px;
+            font-size: 1rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ff4500;
+            line-height: 1.4;
+        }
+
+        /* Animación de entrada */
+        .aparecer {
+            animation: entradaTriunfal 1.5s ease-out forwards;
+        }
+        @keyframes entradaTriunfal {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
     </style>
 </head>
 <body>
@@ -83,59 +127,62 @@
         <span class="cursor"></span>
     </div>
 
-    <button id="botonRegalo" onclick="mostrarSorpresa()">ABRIR SECRETO</button>
+    <button id="botonRegalo" onclick="mostrarSorpresa()">[ DESENCRIPTAR ]</button>
+
+    <div id="contenedorImagen">
+        <img id="imagenSorpresa" src="mifoto.jpg" alt="Regalo Sorpresa">
+        
+        <p class="mensaje-final">
+            &gt; Hackeo completado con éxito.<br>
+            <strong>¡Feliz Navidad, MC!</strong> 🚀❤️<br>
+            <span style="font-size: 0.8em; color: #ff8c00;">(Resetearía el universo por ti)</span>
+        </p>
+    </div>
+
 
     <script>
-        // Aquí están las referencias a Mystic Messenger
         const lineas = [
-            "> Conectando al servidor de la RFA...",
-            "> [GOD SEVEN] ha ingresado al chat.",
-            "> Hackeando seguridad... Acceso concedido.",
-            "> Comiendo Honey Buddha Chips... Espere.",
-            "> Escaneando a la usuaria: Es MC (La mujer más linda).",
-            "> Defensor de la Justicia activado.",
-            "> Descifrando mensaje oculto de mi corazón...",
-            "> ¡Hola amor! Seven tiene algo para ti..."
+            "> Conectando a servidor seguro...",
+            "> Usuario detectado: La novia del programador.",
+            "> [GOD SEVEN] ha interceptado la conexión.",
+            "> Eliminando tristeza... 100% completado.",
+            "> Descargando cariño comprimido en .zip...",
+            "> ¡Alerta! Nivel de belleza crítico detectado.",
+            "> Preparando visualización de datos...",
+            "> Todo listo. Presiona el botón."
         ];
 
         let i = 0;
         let j = 0;
-        const speed = 40; // Velocidad de escritura
+        const speed = 35;
         const contenedor = document.getElementById("texto");
 
         function escribir() {
             if (i < lineas.length) {
-                // Si es el inicio de una línea, agregamos el prompt
-                if (j === 0) {
-                   // No hacemos nada especial, el texto ya trae el ">"
-                }
-
                 if (j < lineas[i].length) {
-                    // Escribimos caracter por caracter
-                    // Truco: Si ya hay texto, lo recuperamos y añadimos el caracter
-                    // Pero para hacerlo simple, añadimos al HTML
-                    
-                    // Nota: para evitar problemas con el DOM, añadimos un span o directamente texto
-                    // Esta versión simplificada añade al innerHTML del div
-                    const char = lineas[i].charAt(j);
-                    contenedor.innerHTML += char;
+                     contenedor.innerHTML += lineas[i].charAt(j);
                     j++;
                     setTimeout(escribir, speed);
                 } else {
-                    contenedor.innerHTML += "<br>"; // Salto de linea
+                    contenedor.innerHTML += "<br>";
                     i++;
                     j = 0;
-                    setTimeout(escribir, 800); // Pausa entre lineas
+                    setTimeout(escribir, 600);
                 }
             } else {
-                // Al terminar todo
                 document.getElementById("botonRegalo").style.display = "block";
             }
         }
 
         function mostrarSorpresa() {
-            // Aquí puedes cambiar el mensaje final
-            alert("🐱 Mensaje de 707 (y de mí):\n\n¡Feliz Navidad, mi MC!\nGracias por reiniciar mi mundo todos los días.\n\nPD: No le digas a Vanderwood que estoy aquí.");
+            // Ocultar terminal
+            document.getElementById("terminal").style.display = "none";
+            document.getElementById("botonRegalo").style.display = "none";
+            
+            // Mostrar imagen con flex para centrar
+            const cont = document.getElementById("contenedorImagen");
+            cont.style.display = "flex"; 
+            cont.classList.add("aparecer"); // Activar animación
         }
 
         window.onload = escribir;

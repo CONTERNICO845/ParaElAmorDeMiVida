@@ -1,1 +1,101 @@
-<h1>GitHub Pages</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Restringido - Navidad</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #39ff14;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        #terminal {
+            max-width: 600px;
+            text-align: left;
+            background: #161b22;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .cursor {
+            border-right: 10px solid #39ff14;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink { 50% { border-color: transparent; } }
+        
+        button {
+            margin-top: 20px;
+            background: #238636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            display: none; /* Se activa al final */
+        }
+        button:hover { background: #2ea043; }
+    </style>
+</head>
+<body>
+
+    <div id="terminal">
+        <div id="texto"></div>
+        <span class="cursor"></span>
+    </div>
+
+    <button id="botonRegalo" onclick="mostrarSorpresa()">EJECUTAR REGALO.EXE</button>
+
+    <script>
+        const lineas = [
+            "> Iniciando sistema de amor v2.0...",
+            "> Buscando base de datos de recuerdos...",
+            "> Encontrados: 1,000,000 de momentos felices.",
+            "> Cargando sentimientos...",
+            "> [ERROR] No se puede medir el nivel de amor: Excede los límites.",
+            "> Optimizando felicidad para esta Navidad...",
+            "> Sistema listo.",
+            "> Hola amor, tengo algo para ti..."
+        ];
+
+        let i = 0;
+        let j = 0;
+        const speed = 50;
+        const contenedor = document.getElementById("texto");
+
+        function escribir() {
+            if (i < lineas.length) {
+                if (j < lineas[i].length) {
+                    contenedor.innerHTML += lineas[i].charAt(j);
+                    j++;
+                    setTimeout(escribir, speed);
+                } else {
+                    contenedor.innerHTML += "<br>";
+                    i++;
+                    j = 0;
+                    setTimeout(escribir, 1000);
+                }
+            } else {
+                document.getElementById("botonRegalo").style.display = "block";
+            }
+        }
+
+        function mostrarSorpresa() {
+            // Cambia el alert por lo que quieras, o redirígela a otra página/foto
+            alert("🎄 ¡Feliz Navidad! 🎄\n\nTu regalo está debajo del árbol (o en mi corazón). ¡Te amo!");
+        }
+
+        window.onload = escribir;
+    </script>
+</body>
+</html>

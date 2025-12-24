@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SYSTEM HACKED BY 707</title>
     <style>
+        /* --- ESTILOS GENERALES --- */
         body {
             background-color: #000000;
-            color: #ff8c00; 
+            color: #ff8c00; /* Naranja 707 */
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh; /* Ocupa toda la altura */
+            min-height: 100vh;
             margin: 0;
             padding: 10px;
             box-sizing: border-box;
-            overflow-x: hidden; /* Evita scroll horizontal */
+            overflow-x: hidden;
         }
 
-        /* --- ESTILO DE LA TERMINAL --- */
+        /* --- ESTILO DE LA TERMINAL (Parte 1) --- */
         #terminal {
             width: 95%;
             max-width: 600px;
@@ -47,8 +48,8 @@
         }
         @keyframes blink { 50% { border-color: transparent; } }
         
-        /* --- ESTILO DEL BOTÓN --- */
-        button {
+        /* --- ESTILO DEL BOTÓN DE HACKEO --- */
+        #botonHackeo {
             background: #ff4500; 
             color: #1a0f00;
             border: 2px solid #ff8c00;
@@ -71,43 +72,87 @@
             100% { box-shadow: 0 0 10px #ff4500; }
         }
 
-        /* --- ESTILO DEL CONTENEDOR DE LA IMAGEN --- */
-        #contenedorImagen {
+        /* --- CONTENEDOR FINAL (Oculto al inicio) --- */
+        #contenedorFinal {
             display: none; 
             text-align: center;
             width: 100%;
-            height: 100vh; /* Usa toda la pantalla disponible */
+            max-width: 500px; /* Ancho máximo del carrusel */
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            animation: entradaTriunfal 1.5s ease-out forwards;
         }
-        
-        /* AQUÍ ESTÁ EL TRUCO PARA LA IMAGEN VERTICAL */
-        #imagenSorpresa {
-            width: auto;           /* El ancho se ajusta solo */
-            max-width: 100%;       /* No se sale del ancho de pantalla */
-            max-height: 75vh;      /* IMPORTANTE: Ocupa máx el 75% de la altura de la pantalla */
-            object-fit: contain;   /* Asegura que se vea completa */
+
+        /* --- ESTILOS DEL CARRUSEL --- */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            /* Ajusta este porcentaje si tus fotos son más cuadradas o más altas.
+               150% es bueno para fotos verticales de celular (ratio 2:3) */
+            padding-top: 150%; 
             border: 3px solid #ff4500;
             border-radius: 10px;
             box-shadow: 0 0 25px rgba(255, 69, 0, 0.6);
+            background: #000;
+            overflow: hidden;
         }
 
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0; /* Ocultas por defecto */
+            transition: opacity 0.8s ease-in-out; /* Transición suave */
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que la foto cubra todo el espacio sin deformarse */
+        }
+
+        /* La clase que hace visible la imagen actual */
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        /* Botones de navegación */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+            color: #ff4500;
+            border: none;
+            font-size: 2rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .carousel-btn:hover {
+            background-color: rgba(255, 69, 0, 0.8);
+            color: white;
+        }
+        .btn-prev { left: 10px; }
+        .btn-next { right: 10px; }
+
+        /* Mensaje final */
         .mensaje-final {
-            margin-top: 15px;
-            font-size: 1rem;
+            margin-top: 20px;
+            font-size: 1.1rem;
             color: #ffffff;
             text-shadow: 0 0 10px #ff4500;
             line-height: 1.4;
         }
 
-        /* Animación de entrada */
-        .aparecer {
-            animation: entradaTriunfal 1.5s ease-out forwards;
-        }
         @keyframes entradaTriunfal {
-            from { opacity: 0; transform: scale(0.8) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
     </style>
@@ -127,65 +172,109 @@
         <span class="cursor"></span>
     </div>
 
-    <button id="botonRegalo" onclick="mostrarSorpresa()">[ DESENCRIPTAR ]</button>
+    <button id="botonHackeo" onclick="mostrarSorpresa()">[ DESENCRIPTAR ARCHIVOS ]</button>
 
-    <div id="contenedorImagen">
-        <img id="imagenSorpresa" src="Foto.png" alt="Regalo Sorpresa">
+    <div id="contenedorFinal">
+        
+        <div class="carousel-container">
+            <div class="carousel-slide active"> <img src="1.png" alt="Foto 1">
+            </div>
+            <div class="carousel-slide">
+                <img src="2.png" alt="Foto 2">
+            </div>
+            <div class="carousel-slide">
+                <img src="3.png" alt="Foto 3">
+            </div>
+            <div class="carousel-slide">
+                <img src="4.png" alt="Foto 4">
+            </div>
+            <div class="carousel-slide">
+                <img src="5.png" alt="Foto 5">
+            </div>
+            <div class="carousel-slide">
+                <img src="6.png" alt="Foto 6">
+            </div>
+            <div class="carousel-slide">
+                <img src="7.png" alt="Foto 7">
+            </div>
+
+            <button class="carousel-btn btn-prev" onclick="moverCarrusel(-1)">&#10094;</button>
+            <button class="carousel-btn btn-next" onclick="moverCarrusel(1)">&#10095;</button>
+        </div>
         
         <p class="mensaje-final">
-            &gt; Hackeo completado con éxito.<br>
-            <strong>¡Feliz Navidad, MC!</strong> 🚀❤️<br>
-            <span style="font-size: 0.8em; color: #ff8c00;"> &lt;h1&gt; Me enamoraría de ti en todos los universos, amor &lt;/h1&gt; </span>
+            &gt; Galería recuperada con éxito.<br>
+            <strong>¡Feliz Navidad, mi MC!</strong> 🚀❤️<br>
+            <span style="font-size: 0.8em; color: #ff8c00;">(Eres mi ruta favorita)</span>
         </p>
     </div>
 
 
     <script>
+        // --- LÓGICA DE LA TERMINAL ---
         const lineas = [
-            "> Conectando a servidor de tu corazon <3 ...",
-            "> Usuario detectado: La novia del programador.",
-            "> [GOD SEVEN] ha interceptado la conexión.",
-            "> Agregandote 100% a mi corazon...",
-            "> Descargando mi amor para comprimirlo en .zip...",
-            "> ¡Alerta! Se a detectados extremos de belleza.",
-            "> Preparando la vista ...",
-            "> Todo listo. Presiona el botón."
+            "> Conectando a la base de datos de la RFA...",
+            "> Usuario: MC. Estado: La más hermosa.",
+            "> [GOD SEVEN] ha encontrado 7 archivos encriptados.",
+            "> Bypassing seguridad con Honey Buddha Chips...",
+            "> Descomprimiendo recuerdos...",
+            "> ¡Alerta! Exceso de amor detectado.",
+            "> Preparando visor de imágenes seguro...",
+            "> Todo listo. Presiona el botón para ver."
         ];
+        let i = 0, j = 0;
+        const speed = 35;
+        const contenedorTexto = document.getElementById("texto");
 
-        let i = 0;
-        let j = 0;
-        const speed = 40;
-        const contenedor = document.getElementById("texto");
-
-        function escribir() {
+        function escribirTerminal() {
             if (i < lineas.length) {
                 if (j < lineas[i].length) {
-                     contenedor.innerHTML += lineas[i].charAt(j);
+                    contenedorTexto.innerHTML += lineas[i].charAt(j);
                     j++;
-                    setTimeout(escribir, speed);
+                    setTimeout(escribirTerminal, speed);
                 } else {
-                    contenedor.innerHTML += "<br>";
+                    contenedorTexto.innerHTML += "<br>";
                     i++;
                     j = 0;
-                    setTimeout(escribir, 600);
+                    setTimeout(escribirTerminal, 600);
                 }
             } else {
-                document.getElementById("botonRegalo").style.display = "block";
+                document.getElementById("botonHackeo").style.display = "block";
             }
         }
 
+        // --- FUNCIÓN PARA CAMBIAR DE LA TERMINAL AL CARRUSEL ---
         function mostrarSorpresa() {
-            // Ocultar terminal
             document.getElementById("terminal").style.display = "none";
-            document.getElementById("botonRegalo").style.display = "none";
-            
-            // Mostrar imagen con flex para centrar
-            const cont = document.getElementById("contenedorImagen");
-            cont.style.display = "flex"; 
-            cont.classList.add("aparecer"); // Activar animación
+            document.getElementById("botonHackeo").style.display = "none";
+            document.getElementById("contenedorFinal").style.display = "flex";
         }
 
-        window.onload = escribir;
+        // --- LÓGICA DEL CARRUSEL ---
+        let indiceActual = 0; // Empieza en la primera foto (índice 0)
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function moverCarrusel(direccion) {
+            // 1. Ocultar la imagen actual
+            slides[indiceActual].classList.remove('active');
+
+            // 2. Calcular el nuevo índice
+            indiceActual += direccion;
+
+            // 3. Loop infinito (si pasas de la última, vuelve a la primera y viceversa)
+            if (indiceActual < 0) {
+                indiceActual = totalSlides - 1; 
+            } else if (indiceActual >= totalSlides) {
+                indiceActual = 0; 
+            }
+
+            // 4. Mostrar la nueva imagen
+            slides[indiceActual].classList.add('active');
+        }
+
+        // Iniciar la terminal al cargar
+        window.onload = escribirTerminal;
     </script>
 </body>
 </html>
